@@ -13,14 +13,9 @@ export const authAPI = {
 
   login: async (credentials) => {
     try {
-      const formData = new FormData();
-      formData.append('username', credentials.username);
-      formData.append('password', credentials.password);
-
-      const response = await api.post('/auth/login', formData, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+      const response = await api.post('/auth/login', {
+        email: credentials.username,
+        password: credentials.password
       });
       return response.data;
     } catch (error) {
